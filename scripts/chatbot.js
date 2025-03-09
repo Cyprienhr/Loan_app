@@ -22,6 +22,9 @@ class Chatbot {
                     <div class="chat-messages"></div>
                     <div class="chat-input">
                         <input type="text" placeholder="Type your question...">
+                        <button class="send-button">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -33,22 +36,29 @@ class Chatbot {
     const chatIcon = document.querySelector(".chat-icon");
     const chatWindow = document.querySelector(".chat-window");
     const chatInput = document.querySelector(".chat-input input");
+    const sendButton = document.querySelector(".chat-input .send-button");
 
     chatIcon.addEventListener("click", () => {
       this.isOpen = !this.isOpen;
       chatWindow.style.display = this.isOpen ? "flex" : "none";
     });
 
+    const sendMessage = () => {
+      const message = chatInput.value.trim();
+      if (message) {
+        this.addMessage("user", message);
+        this.processUserMessage(message);
+        chatInput.value = "";
+      }
+    };
+
     chatInput.addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
-        const message = chatInput.value.trim();
-        if (message) {
-          this.addMessage("user", message);
-          this.processUserMessage(message);
-          chatInput.value = "";
-        }
+        sendMessage();
       }
     });
+
+    sendButton.addEventListener("click", sendMessage);
   }
 
   addMessage(type, content) {
