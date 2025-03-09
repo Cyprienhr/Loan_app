@@ -40,6 +40,29 @@
   background: #0066ff;
   color: white;
   border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header h4 {
+  margin: 0;
+  flex: 1;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 18px;
+  transition: opacity 0.3s;
+  margin-left: 10px;
+}
+
+.close-button:hover {
+  opacity: 0.8;
 }
 
 .chat-messages {
@@ -108,44 +131,80 @@
 /* Mobile-specific styles */
 @media screen and (max-width: 768px) {
   .chatbot-container {
-    bottom: 10px;
-    right: 10px;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .chat-icon {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
   }
 
   .chat-window {
-    bottom: 80px;
-    right: 10px;
-    width: calc(100% - 20px);
-    max-width: 350px;
-    height: 60vh;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: calc(100vh - 60px);
+    max-width: 100%;
+    border-radius: 15px 15px 0 0;
   }
 
   .chat-input {
-    padding: 8px;
-    position: relative;
+    padding: 10px;
+    background: #fff;
+    border-top: 1px solid #eee;
+    position: sticky;
+    bottom: 0;
     display: flex;
     align-items: center;
+    gap: 8px;
   }
 
   .chat-input input {
-    padding: 10px;
-    font-size: 16px; /* Better for mobile touch */
-    margin-right: 8px;
-    width: calc(100% - 45px); /* Account for send button */
+    height: 40px;
+    font-size: 16px;
+    padding: 8px 15px;
+    flex: 1;
+    border-radius: 20px;
+    -webkit-appearance: none; /* Fix for iOS */
   }
 
   .chat-input .send-button {
     width: 40px;
     height: 40px;
-    position: relative;
-    right: 0;
-    background: #007bff;
-    display: flex !important; /* Force display on mobile */
-    align-items: center;
-    justify-content: center;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0;
+    margin: 0;
   }
 
-  .chat-input .send-button i {
-    font-size: 18px;
+  .chat-messages {
+    height: calc(100% - 120px);
+    padding: 15px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+
+  .message {
+    max-width: 85%;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .close-button {
+    right: 15px;
+    top: 15px;
+    padding: 8px;
+    font-size: 20px; /* Larger touch target for mobile */
+  }
+}
+
+/* Fix for bottom-positioned elements on mobile */
+@supports (-webkit-touch-callout: none) {
+  .chat-window {
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }

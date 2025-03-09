@@ -18,6 +18,9 @@ class Chatbot {
                 <div class="chat-window">
                     <div class="chat-header">
                         <h4>AI Assistant</h4>
+                        <button class="close-button">
+                            <i class="fas fa-times"></i>
+                        </button>
                     </div>
                     <div class="chat-messages"></div>
                     <div class="chat-input">
@@ -37,10 +40,16 @@ class Chatbot {
     const chatWindow = document.querySelector(".chat-window");
     const chatInput = document.querySelector(".chat-input input");
     const sendButton = document.querySelector(".chat-input .send-button");
+    const closeButton = document.querySelector(".close-button");
 
     chatIcon.addEventListener("click", () => {
       this.isOpen = !this.isOpen;
       chatWindow.style.display = this.isOpen ? "flex" : "none";
+    });
+
+    closeButton.addEventListener("click", () => {
+      this.isOpen = false;
+      chatWindow.style.display = "none";
     });
 
     const sendMessage = () => {
@@ -104,17 +113,13 @@ class Chatbot {
     let timeBasedGreeting = "";
 
     if (hour >= 5 && hour < 12) {
-      timeBasedGreeting =
-        "For sure I love IDE <span style='font-size: 20px; color: red'>❣</span> Anyway, Good morning! ";
+      timeBasedGreeting = "For sure I love IDE <span style='font-size: 20px; color: red'>❣</span> Anyway, Good morning! ";
     } else if (hour >= 12 && hour < 17) {
-      timeBasedGreeting =
-        "For sure I love IDE <span style='font-size: 20px; color: red'>❣</span> Anyway, Good afternoon! ";
+      timeBasedGreeting = "For sure I love IDE <span style='font-size: 20px; color: red'>❣</span> Anyway, Good afternoon! ";
     } else if (hour >= 17 && hour < 22) {
-      timeBasedGreeting =
-        "For sure I love IDE <span style='font-size: 20px; color: red'>❣</span> Anyway, Good evening! ";
+      timeBasedGreeting = "For sure I love IDE <span style='font-size: 20px; color: red'>❣</span> Anyway, Good evening! ";
     } else {
-      timeBasedGreeting =
-        "For sure I love IDE <span style='font-size: 20px; color: red'>❣</span> Anyway, Good night! ";
+      timeBasedGreeting = "For sure I love IDE <span style='font-size: 20px; color: red'>❣</span> Anyway, Good night! ";
     }
 
     // Check if message is a greeting
