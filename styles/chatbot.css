@@ -89,10 +89,12 @@
   width: 35px;
   height: 35px;
   cursor: pointer;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s;
+  min-width: 35px;
+  min-height: 35px;
 }
 
 .chat-input .send-button:hover {
@@ -101,4 +103,49 @@
 
 .chat-input .send-button i {
   font-size: 15px;
+}
+
+/* Mobile-specific styles */
+@media screen and (max-width: 768px) {
+  .chatbot-container {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .chat-window {
+    bottom: 80px;
+    right: 10px;
+    width: calc(100% - 20px);
+    max-width: 350px;
+    height: 60vh;
+  }
+
+  .chat-input {
+    padding: 8px;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .chat-input input {
+    padding: 10px;
+    font-size: 16px; /* Better for mobile touch */
+    margin-right: 8px;
+    width: calc(100% - 45px); /* Account for send button */
+  }
+
+  .chat-input .send-button {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    right: 0;
+    background: #007bff;
+    display: flex !important; /* Force display on mobile */
+    align-items: center;
+    justify-content: center;
+  }
+
+  .chat-input .send-button i {
+    font-size: 18px;
+  }
 }
