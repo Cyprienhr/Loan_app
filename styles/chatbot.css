@@ -152,6 +152,22 @@
     border-radius: 15px 15px 0 0;
   }
 
+  .chat-header {
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .chat-header h4 {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+  }
+
   .chat-input {
     padding: 10px;
     background: #fff;
@@ -195,10 +211,15 @@
   }
 
   .close-button {
-    right: 15px;
-    top: 15px;
+    position: static; /* Remove absolute positioning */
     padding: 8px;
-    font-size: 20px; /* Larger touch target for mobile */
+    margin: 0;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
   }
 }
 

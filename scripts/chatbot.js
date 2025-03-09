@@ -113,13 +113,17 @@ class Chatbot {
     let timeBasedGreeting = "";
 
     if (hour >= 5 && hour < 12) {
-      timeBasedGreeting = "For sure I love IDE <span style='font-size: 20px; color: red'>❣</span> Anyway, Good morning! ";
+      timeBasedGreeting =
+        "For sure I love IDE <span style='font-size: 20px; color: red'>❣</span> Anyway, Good morning! ";
     } else if (hour >= 12 && hour < 17) {
-      timeBasedGreeting = "For sure I love IDE <span style='font-size: 20px; color: red'>❣</span> Anyway, Good afternoon! ";
+      timeBasedGreeting =
+        "For sure I love IDE <span style='font-size: 20px; color: red'>❣</span> Anyway, Good afternoon! ";
     } else if (hour >= 17 && hour < 22) {
-      timeBasedGreeting = "For sure I love IDE <span style='font-size: 20px; color: red'>❣</span> Anyway, Good evening! ";
+      timeBasedGreeting =
+        "For sure I love IDE <span style='font-size: 20px; color: red'>❣</span> Anyway, Good evening! ";
     } else {
-      timeBasedGreeting = "For sure I love IDE <span style='font-size: 20px; color: red'>❣</span> Anyway, Good night! ";
+      timeBasedGreeting =
+        "For sure I love IDE <span style='font-size: 20px; color: red'>❣</span> Anyway, Good night! ";
     }
 
     // Check if message is a greeting
