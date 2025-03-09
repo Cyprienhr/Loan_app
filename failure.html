@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Application Result</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header error-header">
+            <i class="fas fa-times-circle header-icon"></i>
+            <h1>Loan Application Result</h1>
+        </div>
+        <div class="result error" id="failureMessage">
+        </div>
+        <div class="data-summary">
+            <h3><i class="fas fa-file-alt"></i> Application Summary</h3>
+            <div class="summary-grid" id="dataSummary">
+            </div>
+        </div>
+        <button onclick="window.location.href='index.html'" class="action-button">
+            <i class="fas fa-redo"></i> Try Again
+        </button>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const data = {
+            name: urlParams.get('name'),
+            businessAge: urlParams.get('businessAge'),
+            revenue: urlParams.get('revenue'),
+            hasCollateral: urlParams.get('hasCollateral') === 'true' ? 'Yes' : 'No',
+            creditScore: urlParams.get('creditScore'),
+            hasUnpaidLoans: urlParams.get('hasUnpaidLoans') === 'true' ? 'Yes' : 'No',
+            defaultRate: urlParams.get('defaultRate'),
+            isRegistered: urlParams.get('isRegistered') === 'true' ? 'Yes' : 'No'
+        };
+        const reasons = urlParams.get('reasons').split(',');
+        
+        document.getElementById('failureMessage').innerHTML = `
+            <h2><i class="fas fa-user"></i> Hello ${data.name}</h2>
+            <p class="error-message">Unfortunately, we cannot approve your loan application at this time.</p>
+            <div class="reasons-section">
+                <h3><i class="fas fa-exclamation-triangle"></i> Reasons for Rejection:</h3>
+                <ul class="reasons-list">
+                    ${reasons.map(reason => `<li><i class="fas fa-times-circle"></i> ${reason}</li>`).join('')}
+                </ul>
+            </div>
+        `;
+
+        document.getElementById('dataSummary').innerHTML = `
+            <div class="summary-item">
+                <span class="label"><i class="fas fa-building"></i> Business Age:</span>
+                <span class="value">${data.businessAge} months</span>
+            </div>
+            <div class="summary-item">
+                <span class="label"><i class="fas fa-chart-line"></i> Monthly Revenue:</span>
+                <span class="value">${Number(data.revenue).toLocaleString()} Frw</span>
+            </div>
+            <div class="summary-item">
+                <span class="label"><i class="fas fa-shield-alt"></i> Collateral:</span>
+                <span class="value">${data.hasCollateral}</span>
+            </div>
+            <div class="summary-item">
+                <span class="label"><i class="fas fa-star"></i> Credit Score:</span>
+                <span class="value">${data.creditScore}</span>
+            </div>
+            <div class="summary-item">
+                <span class="label"><i class="fas fa-exclamation-circle"></i> Unpaid Loans:</span>
+                <span class="value">${data.hasUnpaidLoans}</span>
+            </div>
+            <div class="summary-item">
+                <span class="label"><i class="fas fa-percentage"></i> Default Rate:</span>
+                <span class="value">${data.defaultRate}%</span>
+            </div>
+            <div class="summary-item">
+                <span class="label"><i class="fas fa-registered"></i> Registered:</span>
+                <span class="value">${data.isRegistered}</span>
+            </div>
+        `;
+    </script>
+</body>
+</html>
